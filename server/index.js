@@ -1,9 +1,15 @@
 import express from "express";
 import router from "./Router/AllRoutes.js";
+import dotenv from "dotenv"
+import Data from "./Db/data.db.js";
 const app = express();
 
-const port = 3000 || 4000;
+dotenv.config();
 
+const port = process.env.PORT || 4000;
+
+app.use(express.json())
+Data();
 app.use("/api",router);
 
 app.listen(port,()=>{
