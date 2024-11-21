@@ -3,6 +3,8 @@ import Home from "../component/Home";
 import Account from "../component/Account";
 import Login from "../component/Login";
 import Register from "../component/Register";
+import ErrorPage from "../component/ErrorPage";
+import Countdown from "../CountDown";
 
 const AllRoutes = () => {
     return (
@@ -14,6 +16,9 @@ const AllRoutes = () => {
                     <Route path="login" element={<Login />} />
                     <Route path="register" element={<Register />} />
                 </Route>
+                <Route path="/countdown" element={<Countdown />} />
+                <Route path="*" element={<ErrorPage />} />
+
             </Routes>
         </>
     )
