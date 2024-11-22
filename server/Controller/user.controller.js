@@ -55,4 +55,17 @@ const UserLogin = async (req, res) => {
         return res.status(400).send("Error :: " + error);
     }
 }
-export { HealthCheck, UserRegister, UserLogin };
+
+const GetUser = async (req, res) => {
+    try {
+
+        const data = await req.user;
+        return res.status(200).json({ data });
+
+    } catch (error) {
+
+        console.log("error find in getuser data in controller :: " + error)
+        return res.status(400).send("Error :: " + error);
+    }
+}
+export { HealthCheck, UserRegister, UserLogin, GetUser };

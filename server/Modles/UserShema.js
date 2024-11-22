@@ -12,7 +12,8 @@ const UserShema = new mongoose.Schema({
     },
     email: {
         type: String,
-        require: true
+        require: true,
+        unique: true, 
     },
     number: {
         type: Number,
@@ -21,6 +22,10 @@ const UserShema = new mongoose.Schema({
     place: {
         type: String,
         require: true
+    },
+    isAdmin: {
+        type: Boolean,
+        default : false
     },
     password: {
         type: String,

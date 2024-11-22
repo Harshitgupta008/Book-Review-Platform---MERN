@@ -14,9 +14,29 @@ export const AuthProvider = ({ children }) => {
         return localStorage.setItem("booksUSer", tokens);
 
     }
-    
+
+    const UserAuth = async () => {
+        try {
+            const response = await fetch("/api/getuserdata", {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            if (response.status === 200) {
+                const user = await response.json();
+                setUserDetail(user.data);
+               
+            } else {
+                console.log("token not found")
+            }
+        } catch (error) {
+            console.log(`error in Userfetching in contact form :: ${error}`)
+        }
+    }
 
     useEffect(() => {
+        UserAuth();
     }, [userDetail, token]);
     return <AuthContext.Provider value={{ isLoggedin, GenrateToken, userDetail }}>
         {children}
