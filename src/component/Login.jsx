@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { UseAuth } from "../AuthProvider";
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const Navigate = useNavigate();
+    const { GenrateToken } = UseAuth();
     const LoginUser = async (e) => {
         e.preventDefault();
         if (!email || !password) return window.alert("Both field are mendatory");
@@ -23,7 +25,8 @@ const Login = () => {
 
             if (response.ok) {
                 const details = await response.json();
-                window.alert(details.booksUser);
+                window.alert("Login successfully");
+                GenrateToken(details.booksUser)
                 return Navigate("/");
             }
 

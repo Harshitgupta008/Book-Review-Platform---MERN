@@ -1,5 +1,7 @@
 import express from "express";
 import { HealthCheck, UserRegister, UserLogin } from "../Controller/user.controller.js";
+import Authentation from "../Middleware/Authentation.js";
+
 const router = express.Router();
 
 router.route("/health-check").get(HealthCheck);
