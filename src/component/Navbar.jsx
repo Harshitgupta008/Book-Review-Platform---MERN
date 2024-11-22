@@ -4,7 +4,7 @@ const Navbar = () => {
     const location = useLocation(); 
     return (
         <>
-            <nav className="bg-gray-800 text-white flex items-center p-6 justify-between">
+            <nav className="bg-gray-800 w-full text-white flex items-center p-6 justify-between">
                 <div><a href="https://github.com/Harshitgupta008">Harshit</a></div>
                 <div className="flex gap-4">
                     <Link to={"/"} className={`${location.pathname === "/" ? "text-blue-600" : "text-white"}`}>Home</Link>

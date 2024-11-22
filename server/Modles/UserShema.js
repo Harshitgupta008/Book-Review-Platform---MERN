@@ -10,12 +10,12 @@ const UserShema = new mongoose.Schema({
         type: String,
         require: true
     },
-    number: {
-        type: Number,
-        require: true
-    },
     email: {
         type: String,
+        require: true
+    },
+    number: {
+        type: Number,
         require: true
     },
     place: {
