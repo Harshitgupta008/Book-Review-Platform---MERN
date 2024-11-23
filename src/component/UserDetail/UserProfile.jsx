@@ -15,7 +15,7 @@ const UserProfile = () => {
                 <div className="text-center mt-2">
                     <h2 className="font-semibold">{userDetail.name}</h2>
                     {
-                        userDetail.isAdmin ? "" 
+                        userDetail.isAdmin === false ? "" 
                         :
                         <p className="text-gray-500">Admin</p>
                     }

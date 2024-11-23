@@ -11,6 +11,7 @@ import ViewsDetail from "../component/UserDetail/ViewsDetail"
 import { UseAuth } from "../AuthProvider";
 import AdimnAccount from "../component/AdminPanal/AdminAccount";
 import AllUsers from "../component/AdminPanal/AllUsers";
+import FindUser from "../component/AdminPanal/FindUser";
 const AllRoutes = () => {
     const { isLoggedin,userDetail } = UseAuth();
     return (
@@ -26,7 +27,7 @@ const AllRoutes = () => {
                         </Route>)
                         :
                         (
-                            userDetail.isAdmin ?
+                            userDetail.isAdmin === false ?
 
                                 (<Route path="/account" element={<UserAccount />}>
                                     <Route path="profile" element={<UserProfile />} />
@@ -37,6 +38,7 @@ const AllRoutes = () => {
                                     <Route path="profile" element={<UserProfile />} />
                                     <Route path="allusers" element={< AllUsers />} />
                                     <Route path="UserDetail" element={< ViewsDetail />} />
+                                    <Route path=":id" element={< FindUser />} />
                                 </Route>)
 
                         )

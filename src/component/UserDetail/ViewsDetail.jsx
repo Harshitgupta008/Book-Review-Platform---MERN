@@ -7,14 +7,7 @@ const ViewsDetail = () => {
                 <div className="bg-white w-full   max-w-lg shadow  sm:rounded-lg">
                     <div className="border-t border-gray-200">
                         <dl>
-                            <div className="bg-gray-50  px-4 py-5 grid grid-cols-2  sm:grid-cols-3 sm:gap-12 ">
-                                <dt className="text-sm font-medium text-gray-500">
-                                    Id
-                                </dt>
-                                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                    {userDetail._id}
-                                </dd>
-                            </div>
+                           
                             <div className="bg-gray-50  px-4 py-5 grid grid-cols-2  sm:grid-cols-3 sm:gap-12 ">
                                 <dt className="text-sm font-medium text-gray-500">
                                     Full name
@@ -48,7 +41,7 @@ const ViewsDetail = () => {
                                 </dd>
                             </div>
                             {
-                                userDetail.isAdmin ? ""
+                                userDetail.isAdmin === false ? ""
                                     :
 
                                     <div className="bg-gray-50  px-4 py-5 grid grid-cols-2  sm:grid-cols-3 sm:gap-12 ">
