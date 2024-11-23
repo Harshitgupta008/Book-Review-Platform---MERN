@@ -1,7 +1,9 @@
+import { UseAuth } from "../../AuthProvider";
 const ViewsDetail = () => {
+    const { userDetail } = UseAuth();
     return (
         <>
-            <div className="flex w-full items-center justify-center mt-20">
+            <div className="flex w-full items-center justify-center ">
                 <div className="bg-white w-full   max-w-lg shadow  sm:rounded-lg">
                     <div className="border-t border-gray-200">
                         <dl>
@@ -10,7 +12,7 @@ const ViewsDetail = () => {
                                     Full name
                                 </dt>
                                 <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                    Harshit Gupta
+                                    {userDetail.name}
                                 </dd>
                             </div>
                             <div className="bg-white  px-4 py-5 grid grid-cols-2  sm:grid-cols-3 sm:gap-12 ">
@@ -18,7 +20,7 @@ const ViewsDetail = () => {
                                     Place
                                 </dt>
                                 <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                    Delhi
+                                    {userDetail.place}
                                 </dd>
                             </div>
                             <div className="bg-gray-50  px-4 py-5 grid grid-cols-2  sm:grid-cols-3 sm:gap-12 ">
@@ -26,7 +28,7 @@ const ViewsDetail = () => {
                                     Email address
                                 </dt>
                                 <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                    harshit@email.com
+                                    {userDetail.email}
                                 </dd>
                             </div>
                             <div className="bg-gray-50  px-4 py-5 grid grid-cols-2  sm:grid-cols-3 sm:gap-12 ">
@@ -34,7 +36,7 @@ const ViewsDetail = () => {
                                     Phone Number
                                 </dt>
                                 <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                    0123456789
+                                    {userDetail.number}
                                 </dd>
                             </div>
                             <div className="bg-gray-50  px-4 py-5 grid grid-cols-2  sm:grid-cols-3 sm:gap-12 ">

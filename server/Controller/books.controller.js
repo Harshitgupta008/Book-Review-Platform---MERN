@@ -22,4 +22,4 @@ const SubmitBooks = async (req, res) => {
     }
 }
 
-export default { SubmitBooks };
+export  { SubmitBooks };

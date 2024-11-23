@@ -14,6 +14,10 @@ export const AuthProvider = ({ children }) => {
         return localStorage.setItem("booksUSer", tokens);
 
     }
+    const RemoveToken = () => {
+        setToken("");
+        return localStorage.removeItem("booksUSer");
+    }
 
     const UserAuth = async () => {
         try {
@@ -26,7 +30,7 @@ export const AuthProvider = ({ children }) => {
             if (response.status === 200) {
                 const user = await response.json();
                 setUserDetail(user.data);
-               
+
             } else {
                 console.log("token not found")
             }
@@ -37,8 +41,8 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         UserAuth();
-    }, [userDetail, token]);
-    return <AuthContext.Provider value={{ isLoggedin, GenrateToken, userDetail }}>
+    }, [userDetail, token, userDetail]);
+    return <AuthContext.Provider value={{ isLoggedin, userDetail, GenrateToken, RemoveToken }}>
         {children}
     </AuthContext.Provider>
 }

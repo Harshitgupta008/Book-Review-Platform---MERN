@@ -27,7 +27,8 @@ const Login = () => {
                 const details = await response.json();
                 window.alert("Login successfully");
                 GenrateToken(details.booksUser)
-                return Navigate("/");
+                Navigate("/");
+                return location.reload();
             }
 
         } catch (error) {
