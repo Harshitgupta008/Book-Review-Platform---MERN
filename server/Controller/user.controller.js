@@ -68,4 +68,6 @@ const GetUser = async (req, res) => {
         return res.status(400).send("Error :: " + error);
     }
 }
+
+
 export { HealthCheck, UserRegister, UserLogin, GetUser };
