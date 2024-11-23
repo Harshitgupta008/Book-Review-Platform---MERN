@@ -69,5 +69,17 @@ const GetUser = async (req, res) => {
     }
 }
 
+const GetAllUser = async (req, res) => {
+    try {
+        const UserID =  req.params.id;
+        const data = await User.find({ _id: { $nin: [UserID] } });
+        
+        return res.status(200).send( data );
 
-export { HealthCheck, UserRegister, UserLogin, GetUser };
+    } catch (error) {
+
+        console.log("error find in GetAllUser data in controller :: " + error)
+        return res.status(400).send("Error :: " + error);
+    }
+}
+export { HealthCheck, UserRegister, UserLogin, GetUser, GetAllUser };

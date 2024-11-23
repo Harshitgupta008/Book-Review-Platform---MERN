@@ -9,6 +9,14 @@ const ViewsDetail = () => {
                         <dl>
                             <div className="bg-gray-50  px-4 py-5 grid grid-cols-2  sm:grid-cols-3 sm:gap-12 ">
                                 <dt className="text-sm font-medium text-gray-500">
+                                    Id
+                                </dt>
+                                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                    {userDetail._id}
+                                </dd>
+                            </div>
+                            <div className="bg-gray-50  px-4 py-5 grid grid-cols-2  sm:grid-cols-3 sm:gap-12 ">
+                                <dt className="text-sm font-medium text-gray-500">
                                     Full name
                                 </dt>
                                 <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
@@ -39,6 +47,19 @@ const ViewsDetail = () => {
                                     {userDetail.number}
                                 </dd>
                             </div>
+                            {
+                                userDetail.isAdmin ? ""
+                                    :
+
+                                    <div className="bg-gray-50  px-4 py-5 grid grid-cols-2  sm:grid-cols-3 sm:gap-12 ">
+                                        <dt className="text-sm font-medium text-gray-500">
+                                            Status
+                                        </dt>
+                                        <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                            Admin
+                                        </dd>
+                                    </div>
+                            }
                             <div className="bg-gray-50  px-4 py-5 grid grid-cols-2  sm:grid-cols-3 sm:gap-12 ">
                                 <dt className="text-sm font-medium text-gray-500">
                                     Password

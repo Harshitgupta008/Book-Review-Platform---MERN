@@ -14,6 +14,11 @@ const UserProfile = () => {
                 </div>
                 <div className="text-center mt-2">
                     <h2 className="font-semibold">{userDetail.name}</h2>
+                    {
+                        userDetail.isAdmin ? "" 
+                        :
+                        <p className="text-gray-500">Admin</p>
+                    }
                 </div>
                 <ul className="py-4 mt-2 text-gray-700 flex items-center justify-around">
                     <li className="flex flex-col items-center justify-around">
@@ -38,7 +43,7 @@ const UserProfile = () => {
                         <div>0</div>
                     </li>
                 </ul>
-                <div className="p-4 border-t flex flex-wrap justify-evenly mx-8 mt-2">
+                <div className="p-4 border-t gap-5 flex flex-wrap justify-evenly mx-8 mt-2">
                     <button className="w-fit h-fit  mx-auto rounded-full bg-gray-900 hover:shadow-lg font-semibold text-white px-6 py-2">Edit Profile</button>
                     <Link to={"/account/UserDetail"} className="w-fit h-fit  mx-auto rounded-full bg-gray-900 hover:shadow-lg font-semibold text-white px-6 py-2">Views</Link>
                 </div>
