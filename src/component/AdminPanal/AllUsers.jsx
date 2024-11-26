@@ -25,7 +25,7 @@ const AllUsers = () => {
             <div className="flex flex-wrap items-center justify-center gap-4">
                 {allUserData.length > 0 ? (
                     allUserData.map((user, i) => (
-                        <Link to={`/account/${user._id}`} key={user._id || i} className="bg-gray-100 dark:bg-gray-700 relative hover:scale-105 cursor-pointer shadow-xl h-fit w-fit hover:shadow-2xl rounded-xl p-5 transition-all duration-500 transform">
+                        <Link to={`/account/allusers/${user._id}`} key={user._id || i} className="bg-gray-100 dark:bg-gray-700 relative hover:scale-105 cursor-pointer shadow-xl h-fit w-fit hover:shadow-2xl rounded-xl p-5 transition-all duration-500 transform">
                             <div className="flex flex-wrap items-center gap-4">
                                 <img src={defaultIamge} alt="User" className="h-32 w-32 rounded-full" />
                                 <div className="flex flex-col gap-1">
