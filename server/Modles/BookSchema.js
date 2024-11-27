@@ -9,7 +9,7 @@ const BookSchema = new mongoose.Schema({
         type: String,
         require: true,
     },
-    genere: {
+    category: {
         type: String,
         require: true,
     },
@@ -29,10 +29,7 @@ const BookSchema = new mongoose.Schema({
         type: Number,
         require: true,
     },
-    imageurl: {
-        type: String,
-        require: true
-    }
+    image: {}
 
 }, { timestamps: true });
 

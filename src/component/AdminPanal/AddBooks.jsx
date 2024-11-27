@@ -4,12 +4,46 @@ const AddBooks = () => {
     const [books, setbooks] = useState({
         title: "", author: "", category: "", summary: "", isbn: "", price: "", quantity: "",
     })
+    const [addimage, setAddimage] = useState("");
+
     const HandleInput = (e) => {
         const { value, name } = e.target;
-        setbooks({...books, [name]:value});
+        setbooks({ ...books, [name]: value });
     }
-    const SubmitBook = (e)=>{
+    const SubmitBook = async (e) => {
         e.preventDefault();
+        const { title, author, category, summary, isbn, price, quantity } = books;
+        if (!title || !author || !category || !summary || !isbn || !price || !quantity || !addimage) return window.alert("All field are mendetory")
+
+        try {
+
+            const formdata = new FormData();
+            formdata.append("title", title);
+            formdata.append("author", author);
+            formdata.append("category", category);
+            formdata.append("summary", summary);
+            formdata.append("isbn", isbn);
+            formdata.append("price", price);
+            formdata.append("quantity", quantity);
+            formdata.append("image", addimage);
+
+            const response = await fetch("/api/submit-books", {
+                method: "POST",
+                body: formdata,
+            });
+            if (response.ok) {
+                setbooks({
+                    title: "", author: "", category: "", summary: "", isbn: "", price: "", quantity: "",
+                })
+                setAddimage("")
+               return window.alert("submitted");
+            }else if(response.status === 400){
+                return window.alert("fonded error ::&#^$%/")
+            }
+
+        } catch (error) {
+            return console.log("found error " + error)
+        }
     }
     return (
         <>
@@ -81,7 +115,12 @@ const AddBooks = () => {
                     <label htmlFor="image" className="block text-sm font-medium text-gray-700">
                         Image
                     </label>
-                    <input type="file" id="image" className="mt-1 w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent"
+                    {
+                        !addimage || addimage === "" ? ""
+                            :
+                            <img src={!addimage ? "" : URL.createObjectURL(addimage)} alt="images" className="h-44 w-40" />
+                    }
+                    <input type="file" id="image" name="image" accept=".jpg, .jpeg, .png, .svg" onChange={(e) => setAddimage(e.target.files[0])} className="mt-1 w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent"
                     />
                 </div>
 

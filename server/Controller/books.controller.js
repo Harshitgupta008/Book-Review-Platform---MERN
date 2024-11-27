@@ -1,25 +1,45 @@
 import Books from "../Modles/BookSchema.js";
+import dotenv from "dotenv";
+import { v2 as cloudinary } from 'cloudinary';
+import fs from 'fs';
+
+
+dotenv.config();
+
+cloudinary.config({
+    cloud_name: process.env.cloudinary_cloud_name,
+    api_key: process.env.cloudinary_api_key,
+    api_secret: process.env.cloudinary_api_secret
+});
+
 
 const SubmitBooks = async (req, res) => {
-    const { title, author, genere, summary, isbn, price, quantity, imageurl } = req.body;
-    if (!title || !author || !genere || !summary || !isbn || !price || !quantity || !imageurl) return res.status(400).send("All field mendetory");
+    const { title, author, category, summary, isbn, price, quantity } = req.body;
+    if (!title || !author || !category || !summary || !isbn || !price || !quantity) return res.status(400).send("All field mendetory");
+    if (!req.file.path) return res.send("Image are mendatory");
 
     try {
+
+        const uploadResult = await cloudinary.uploader.upload(req.file.path);
+
+        // console.log(uploadResult)
         const response = await new Books({
             title: req.body.title,
             author: req.body.author,
-            genere: req.body.genere,
+            category: req.body.category,
             summary: req.body.summary,
             isbn: req.body.isbn,
             price: req.body.price,
             quantity: req.body.quantity,
-            imageurl: req.body.imageurl
+            image: { url: uploadResult.secure_url, cloudId: uploadResult.public_id }
         })
         await response.save();
+        fs.unlinkSync(req.file.path);
         return res.status(200).send("Submited successfully");
     } catch (error) {
         console.log("found error in submit books in controller :: " + error);
+        return res.status(400).send("errr found " + error);
     }
 }
 
-export  { SubmitBooks };
+export { SubmitBooks };
