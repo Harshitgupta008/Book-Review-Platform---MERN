@@ -42,4 +42,16 @@ const SubmitBooks = async (req, res) => {
     }
 }
 
-export { SubmitBooks };
+const AllBooks = async (req, res) => {
+    try {
+
+        const data = await Books.find({});
+        return res.status(200).send(data);
+
+    } catch (error) {
+        console.log("found error in allbooks in controller :: " + error);
+        return res.status(400).send("errr found " + error);
+    }
+}
+
+export { SubmitBooks, AllBooks };

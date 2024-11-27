@@ -1,10 +1,11 @@
+import BooksComponent from "./BooksComponent";
 import ImageBannerHome from "./homeComponent/ImageBannerHome";
 import { useState } from "react";
 
 const Home = () => {
 
     const [item, setItem] = useState("");
-    const SubmitSearch = (e)=>{
+    const SubmitSearch = (e) => {
         e.preventDefault();
     }
     return (
@@ -28,6 +29,8 @@ const Home = () => {
                 {item && <p className="text-2sm md:text-3xl font-extrabold text-black">Search Results for : <span className="text-gray-600">{item}</span></p>}
 
             </div>
+            <BooksComponent />
+
         </>
     )
 }
