@@ -1,13 +1,17 @@
 import defaulimagebook from "../images/defaultimage.jpg"
 import { UseAuth } from "../AuthProvider";
 import { useEffect, useState } from "react";
-const BooksComponent = () => {
-    const { allbooksdata } = UseAuth();
+import { Link } from "react-router-dom";
+const BooksComponent = ({ category }) => {
+    const { allbooksdata, isLoggedin } = UseAuth();
     const [loading, setLoading] = useState(false);
+
+    const [booksData, setBooksData] = useState([]);
 
     useEffect(() => {
         if (allbooksdata) {
             setLoading(true);
+            setBooksData(allbooksdata);
         } else {
             console.log("books not found wait...")
         }
@@ -22,16 +26,22 @@ const BooksComponent = () => {
             <div className="h-fit w-full flex justify-center items-center flex-wrap gap-7">
                 {
                     allbooksdata.length > 0 ? (
-                        allbooksdata.map((book, id) => {
+                        booksData.map((book, id) => {
                             return (
                                 <div key={id} className="h-fit py-4 hover:scale-105 transition-all ease-in-out duration-300 w-64 shadow-lg hover:shadow-2xl cursor-pointer bg-white rounded-md  flex flex-col gap-5">
                                     <div className="h-64 w-full flex justify-center items-center">
-                                        <img className="h-64 w-56" src={!book.image.url ? defaulimagebook : book.image.url} alt="books" />
+                                        <img className="h-64 w-56  rounded-lg" src={!book.image.url ? defaulimagebook : book.image.url} alt="books" />
                                     </div>
                                     <h1 className="text-center text-gray-600 font-bold text-lg">{book.title}</h1>
                                     <div className="flex justify-between px-2 items-center">
                                         <p className="text-black">Price : <span className="text-gray-600">{book.price}$</span></p>
-                                        <button className="h-fit w-fit bg-slate-800 hover:bg-gray-950 text-white px-4 py-2 rounded-md">See Details</button>
+                                        {
+                                            !isLoggedin ? ""
+                                            :
+                                            <Link to={`/booksdetail/${book._id}`}  className="h-fit w-fit bg-slate-800 hover:bg-gray-950 text-white px-4 py-2 rounded-md">See Details</Link>
+                                        }
+
+
                                     </div>
                                 </div>
                             )

@@ -15,6 +15,7 @@ import FindUser from "../component/AdminPanal/FindUser";
 import Books from "../component/AdminPanal/Books";
 import AllBooks from "../component/AdminPanal/AllBooks";
 import AddBooks from "../component/AdminPanal/AddBooks";
+import BooksDetail from "../component/BooksDetail";
 const AllRoutes = () => {
     const { isLoggedin, userDetail } = UseAuth();
     return (
@@ -32,24 +33,34 @@ const AllRoutes = () => {
                         (
                             userDetail.isAdmin === false ?
 
-                                (<Route path="/account" element={<UserAccount />}>
-                                    <Route path="profile" element={<UserProfile />} />
-                                    <Route path="UserDetail" element={< ViewsDetail />} />
-                                </Route>)
+                                (
+                                    <>
+                                        <Route path="/account" element={<UserAccount />}>
+                                            <Route path="" element={<UserProfile />} />
+                                            <Route path="profile" element={<UserProfile />} />
+                                            <Route path="UserDetail" element={< ViewsDetail />} />
+                                        </Route>
+                                        <Route path="/booksdetail/:id" element={< BooksDetail />} />
+                                    </>
+                                )
                                 :
-                                (<Route path="/account" element={<AdimnAccount />}>
-                                    <Route path="" element={<UserProfile />} />
-                                    <Route path="profile" element={<UserProfile />} />
-                                    <Route path="allusers" element={< AllUsers />} />
-                                    <Route path="UserDetail" element={< ViewsDetail />} />
-                                    <Route path="books" element={< Books />} >
-                                        <Route path="" element={< AllBooks />} />
-                                        <Route path="allbooks" element={< AllBooks />} />
-                                        <Route path="addbooks" element={< AddBooks />} />
-
-                                    </Route>
-                                    <Route path="allusers/:id" element={< FindUser />} />
-                                </Route>)
+                                (
+                                    <>
+                                        <Route path="/account" element={<AdimnAccount />}>
+                                            <Route path="" element={<UserProfile />} />
+                                            <Route path="profile" element={<UserProfile />} />
+                                            <Route path="allusers" element={< AllUsers />} />
+                                            <Route path="UserDetail" element={< ViewsDetail />} />
+                                            <Route path="books" element={< Books />} >
+                                                <Route path="" element={< AllBooks />} />
+                                                <Route path="allbooks" element={< AllBooks />} />
+                                                <Route path="addbooks" element={< AddBooks />} />
+                                            </Route>
+                                            <Route path="allusers/:id" element={< FindUser />} />
+                                        </Route>
+                                        <Route path="/booksdetail/:id" element={< BooksDetail />} />
+                                    </>
+                                )
 
                         )
                 }
