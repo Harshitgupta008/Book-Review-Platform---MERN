@@ -3,14 +3,16 @@ import backicon from "../images/backicon.png"
 import { UseAuth } from "../AuthProvider";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import GiveReview from "./GiveReview";
 const BooksDetail = () => {
     const { bookid } = useParams();
     const { allbooksdata } = UseAuth();
     const Navigate = useNavigate();
 
+    const [reviewModle, setReviewModle] = useState(false);
     const [loading, setLoading] = useState(false);
     const [booksdata, setBookData] = useState(null);
-    const BackNav = ()=>{
+    const BackNav = () => {
         return Navigate(-1);
     }
 
@@ -34,16 +36,17 @@ const BooksDetail = () => {
     }
     return (
         <>
-        <div className="relative">
-            <img onClick={BackNav} className="h-12 w-12 absolute top-3 left-3 cursor-pointer hover:scale-105 transition-all ease-in-out duration-300 rounded-full" src={backicon} alt="back" />
-        </div>
-            <div className="w-full h-fit flex justify-evenly flex-wrap mt-20 ">
+            <div className="relative">
+                <img onClick={BackNav} className="h-12 w-12 absolute top-3 left-3 cursor-pointer hover:scale-105 transition-all ease-in-out duration-300 rounded-full" src={backicon} alt="back" />
+            </div>
+            <div className="w-full  h-fit flex justify-evenly flex-wrap mt-20 ">
                 <div className=" h-full w-full  md:w-1/3 p-3 flex justify-center items-center flex-col ">
                     <div className="h-80 w-72 ">
                         <img className="h-80 w-64 " src={!booksdata.image.url ? defaultImage : booksdata.image.url} alt="bookimage" />
                     </div>
 
-                    <button className="bg-gray-600 text-white px-16 py-2 rounded-full mt-5">Give Review</button>
+                    <button onClick={() => window.alert("Not available")} className="bg-gray-600 text-white px-16 py-2 rounded-full mt-5">Book Now</button>
+                    <button onClick={()=>setReviewModle(true)} className="bg-gray-600 text-white px-16 py-2 rounded-full mt-5">Give Review</button>
                     <h1 className="text-center text-gray-600 mt-2 font-semibold text-sm">
                         Rate this book
                     </h1>
@@ -56,7 +59,7 @@ const BooksDetail = () => {
                         <span className="text-gray-500 text-2xl sm:text-3xl"> {booksdata.author}</span>
                     </h2>
 
-                    <p className="text-sm text-gray-700 mt-4 leading-relaxed">
+                    <p className="text-sm text-black mt-4 leading-relaxed">
                         {booksdata.summary}
                     </p>
 
@@ -68,8 +71,10 @@ const BooksDetail = () => {
                     </div>
                 </div>
             </div>
-
-
+            {
+                reviewModle && <GiveReview setReviewModle={setReviewModle}/>
+            }
+            
         </>
     )
 }
