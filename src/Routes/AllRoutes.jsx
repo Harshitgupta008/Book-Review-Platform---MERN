@@ -58,7 +58,7 @@ const AllRoutes = () => {
                                             </Route>
                                             <Route path="allusers/:id" element={< FindUser />} />
                                         </Route>
-                                        <Route path="/booksdetail/:id" element={< BooksDetail />} />
+                                        <Route path="/booksdetail/:bookid" element={< BooksDetail />} />
                                     </>
                                 )
 
