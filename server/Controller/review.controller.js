@@ -2,7 +2,7 @@ import BookReview from "../Modles/ReviewSchema.js";
 
 
 const SubmitReview = async (req, res) => {
-    
+
     const { name, message, email } = req.body;
     const booksId = req.params.booksid;
 
@@ -25,4 +25,23 @@ const SubmitReview = async (req, res) => {
     }
 }
 
-export { SubmitReview };
+const AllBooksReview = async (req, res) => {
+    const booksId = req.params.booksid;
+
+    if (!booksId) return res.status(401).send("Books id not find");
+
+    try {
+        const AllBooks = await BookReview.find({ booksId })
+        if (AllBooks.length > 0) { 
+            return res.status(200).send(AllBooks);
+        }else{
+            return res.status(201).send("Riview list are empty")
+        }
+
+    } catch (error) {
+        console.log("Error found in AllBooksReview reviewcontroller :: " + error);
+        return res.status(400).send("error found :: " + error);
+    }
+}
+
+export { SubmitReview, AllBooksReview };

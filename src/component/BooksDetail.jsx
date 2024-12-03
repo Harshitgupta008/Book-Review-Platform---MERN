@@ -4,6 +4,7 @@ import { UseAuth } from "../AuthProvider";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import GiveReview from "./GiveReview";
+import BooksReview from "./BooksReview";
 const BooksDetail = () => {
     const { bookid } = useParams();
     const { allbooksdata } = UseAuth();
@@ -19,18 +20,18 @@ const BooksDetail = () => {
     useEffect(() => {
         if (allbooksdata && allbooksdata.length > 0) {
             const newdetail = allbooksdata.find(data => data._id === bookid);
-            setBookData(newdetail || null);
+            setBookData(newdetail);
         }
         if (booksdata) {
             // console.log("booksdata found:", booksdata);
             setLoading(true)
         } else {
-            console.log("booksdata not found or waiting for data.");
+            // console.log("booksdata not found or waiting for data.");
         }
     }, [allbooksdata, bookid, booksdata]);
 
     if (!loading) {
-        return <div className="fixed top-0 right-0  left-0 sm:left-40 bottom-0 h-screen w-full flex justify-center items-center">
+        return <div className="fixed right-0 top-16  left-0 bottom-0 h-screen w-full flex justify-center items-center">
             <div className="rounded-md h-12 w-12 border-4 border-t-4 border-blue-500 animate-spin absolute"></div>
         </div>
     }
@@ -46,7 +47,7 @@ const BooksDetail = () => {
                     </div>
 
                     <button onClick={() => window.alert("Not available")} className="bg-gray-600 text-white px-16 py-2 rounded-full mt-5">Book Now</button>
-                    <button onClick={()=>setReviewModle(true)} className="bg-gray-600 text-white px-16 py-2 rounded-full mt-5">Give Review</button>
+                    <button onClick={() => setReviewModle(true)} className="bg-gray-600 text-white px-16 py-2 rounded-full mt-5">Give Review</button>
                     <h1 className="text-center text-gray-600 mt-2 font-semibold text-sm">
                         Rate this book
                     </h1>
@@ -72,9 +73,10 @@ const BooksDetail = () => {
                 </div>
             </div>
             {
-                reviewModle && <GiveReview booksid={booksdata._id} setReviewModle={setReviewModle}/>
+                reviewModle && <GiveReview booksid={booksdata._id} setReviewModle={setReviewModle} />
             }
-            
+
+            <BooksReview booksid={booksdata._id} />
         </>
     )
 }

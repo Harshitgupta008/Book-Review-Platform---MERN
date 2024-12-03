@@ -74,6 +74,9 @@ export const AuthProvider = ({ children }) => {
 
             const response = await fetch(`/api/all-books`, {
                 method: "GET",
+                headers:{
+                    "content-type": "application/json"
+                }
             });
 
             if (response.status === 200) {

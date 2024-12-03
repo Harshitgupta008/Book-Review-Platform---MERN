@@ -1,5 +1,6 @@
 import User from "../Modles/UserShema.js"
 import bcrypt from "bcrypt"
+import BookReview from "../Modles/ReviewSchema.js"
 
 const HealthCheck = (req, res) => {
     return res.status(200).send("server working properlly")
@@ -71,10 +72,10 @@ const GetUser = async (req, res) => {
 
 const GetAllUser = async (req, res) => {
     try {
-        const UserID =  req.params.id;
+        const UserID = req.params.id;
         const data = await User.find({ _id: { $nin: [UserID] } });
-        
-        return res.status(200).send( data );
+
+        return res.status(200).send(data);
 
     } catch (error) {
 
@@ -82,4 +83,22 @@ const GetAllUser = async (req, res) => {
         return res.status(400).send("Error :: " + error);
     }
 }
-export { HealthCheck, UserRegister, UserLogin, GetUser, GetAllUser };
+
+const GetUsersReview = async (req, res) => {
+    try {
+        const userdata = await req.user;
+        const AllBooks = await BookReview.find({ email: userdata.email })
+
+        if (AllBooks.length > 0) {
+            return res.status(200).send(AllBooks);
+        } else {
+            return res.status(201).send("Riview list are empty")
+        }
+    } catch (error) {
+        console.log("error find in GetUsersReview data in user controller :: " + error)
+        return res.status(400).send("Error :: " + error);
+
+    }
+}
+
+export { HealthCheck, UserRegister, UserLogin, GetUser, GetAllUser, GetUsersReview };

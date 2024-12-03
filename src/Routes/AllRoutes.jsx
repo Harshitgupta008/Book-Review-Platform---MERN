@@ -16,6 +16,8 @@ import Books from "../component/AdminPanal/Books";
 import AllBooks from "../component/AdminPanal/AllBooks";
 import AddBooks from "../component/AdminPanal/AddBooks";
 import BooksDetail from "../component/BooksDetail";
+import AllReview from "../component/AllReview";
+import UserCart from "../component/UserDetail/UserCart";
 const AllRoutes = () => {
     const { isLoggedin, userDetail } = UseAuth();
     return (
@@ -39,8 +41,10 @@ const AllRoutes = () => {
                                             <Route path="" element={<UserProfile />} />
                                             <Route path="profile" element={<UserProfile />} />
                                             <Route path="UserDetail" element={< ViewsDetail />} />
+                                            <Route path="reviews" element={< AllReview />} />
+                                            <Route path="usercart" element={< UserCart />} />
                                         </Route>
-                                        <Route path="/booksdetail/:id" element={< BooksDetail />} />
+                                        <Route path="/booksdetail/:bookid" element={< BooksDetail />} />
                                     </>
                                 )
                                 :
@@ -51,6 +55,7 @@ const AllRoutes = () => {
                                             <Route path="profile" element={<UserProfile />} />
                                             <Route path="allusers" element={< AllUsers />} />
                                             <Route path="UserDetail" element={< ViewsDetail />} />
+                                            <Route path="reviews" element={< AllReview />} />
                                             <Route path="books" element={< Books />} >
                                                 <Route path="" element={< AllBooks />} />
                                                 <Route path="allbooks" element={< AllBooks />} />
