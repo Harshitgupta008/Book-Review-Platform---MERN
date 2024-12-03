@@ -2,7 +2,7 @@ import express from "express";
 import { HealthCheck, UserRegister, UserLogin, GetUser, GetAllUser } from "../Controller/user.controller.js";
 import Authentation from "../Middleware/Authentation.js";
 import { SubmitBooks, AllBooks } from "../Controller/books.controller.js"
-import { SubmitBooks } from "../Controller/books.controller.js";
+import { SubmitReview } from "../Controller/review.controller.js";
 import upload from "../Utils/ImageUpload.utils.js";
 const router = express.Router();
 

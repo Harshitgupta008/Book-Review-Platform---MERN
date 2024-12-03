@@ -72,7 +72,7 @@ const BooksDetail = () => {
                 </div>
             </div>
             {
-                reviewModle && <GiveReview setReviewModle={setReviewModle}/>
+                reviewModle && <GiveReview booksid={booksdata._id} setReviewModle={setReviewModle}/>
             }
             
         </>
