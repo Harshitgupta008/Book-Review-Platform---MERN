@@ -61,14 +61,17 @@ const ViewsDetail = () => {
                                     **************
                                 </dd>
                             </div>
-                            <div className="bg-white px-4  py-5 grid grid-cols-2  sm:grid-cols-3 sm:gap-12 ">
+
+                            {/* structure i will update after some time */}
+
+                            {/* <div className="bg-white px-4  py-5 grid grid-cols-2  sm:grid-cols-3 sm:gap-12 ">
                                 <dt className="text-sm font-medium text-gray-500">
                                     Total Review
                                 </dt>
                                 <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                                     0
                                 </dd>
-                            </div>
+                            </div> */}
                             <div className="bg-gray-50  px-4 py-5 grid grid-cols-2  sm:grid-cols-3 sm:gap-12 ">
                                 <dt className="text-sm font-medium text-gray-500">
                                     About

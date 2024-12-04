@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import defaultImage from "../../images/defaultUser.jpg"
 import { UseAuth } from "../../AuthProvider";
 const UserProfile = () => {
-    const { userDetail } = UseAuth(); 
+    const { userDetail, userReview } = UseAuth(); 
     return (
         <>
             <div className="max-w-2xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-16 bg-white shadow-xl rounded-lg text-gray-900">
@@ -40,7 +40,7 @@ const UserProfile = () => {
                             <path
                                 d="M9 12H1v6a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-6h-8v2H9v-2zm0-1H0V5c0-1.1.9-2 2-2h4V2a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1h4a2 2 0 0 1 2 2v6h-9V9H9v2zm3-8V2H8v1h4z" />
                         </svg>
-                        <div>0</div>
+                        <div>{userReview.length}</div>
                     </li>
                 </ul>
                 <div className="p-4 border-t gap-5 flex flex-wrap justify-evenly mx-8 mt-2">

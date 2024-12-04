@@ -7,6 +7,7 @@ export const AuthProvider = ({ children }) => {
     const [userDetail, setUserDetail] = useState("");
     const [allUserData, setAllUserData] = useState([]);
     const [allbooksdata, setAllBooksData] = useState([]);
+    const [userReview, setUserReview] = useState([]);
 
     const isLoggedin = !!token;
 
@@ -68,13 +69,34 @@ export const AuthProvider = ({ children }) => {
             console.log(`Error in AllUser function: ${error}`);
         }
     }
+
+    const UserReview = async () => {
+        if (!token) return;
+        try {
+            const response = await fetch("/api/users-review", {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            if (response.status === 200) {
+                const reviews = await response.json();
+                // console.log("reviews :: "+reviews);
+                return setUserReview(reviews);
+
+            }
+        } catch (error) {
+            console.log(`error in userReview :: ${error}`)
+        }
+    }
+
     const BooksData = async () => {
         try {
 
 
             const response = await fetch(`/api/all-books`, {
                 method: "GET",
-                headers:{
+                headers: {
                     "content-type": "application/json"
                 }
             });
@@ -94,7 +116,7 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         UserAuth();
-
+        UserReview();
     }, [token]);
 
     useEffect(() => {
@@ -109,7 +131,7 @@ export const AuthProvider = ({ children }) => {
     }, [allbooksdata]);
 
 
-    return <AuthContext.Provider value={{token, isLoggedin, userDetail, allUserData, allbooksdata, GenrateToken, RemoveToken }}>
+    return <AuthContext.Provider value={{ token, isLoggedin, userDetail, allUserData, userReview, allbooksdata, GenrateToken, RemoveToken }}>
         {children}
     </AuthContext.Provider>
 }

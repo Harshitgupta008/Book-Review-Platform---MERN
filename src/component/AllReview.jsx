@@ -1,37 +1,10 @@
-import { useEffect, useState } from "react";
 import { UseAuth } from "../AuthProvider";
 import defaultbookimage from "../images/defaultimage.jpg"
 
 const AllReview = () => {
-    const { token } = UseAuth();
-    const [userReview, setUserReview] = useState([]);
+    const { userReview } = UseAuth();
 
-    const UserReview = async () => {
-        if (!token) return;
-        try {
-            const response = await fetch("/api/users-review", {
-                method: "GET",
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            if (response.status === 200) {
-                const reviews = await response.json();
-                // console.log("reviews :: "+reviews);
-                return setUserReview(reviews);
 
-            }
-        } catch (error) {
-            console.log(`error in userReview :: ${error}`)
-        }
-    }
-    useEffect(() => {
-
-        if (token) {
-            UserReview();
-        }
-
-    }, [token])
     return (
         <>
             {
@@ -48,6 +21,7 @@ const AllReview = () => {
                             <div className="mt-4">
                                 <p className="text-gray-700 text-base">{review.message}</p>
                             </div>
+
                         </div>
                     ))
             }
