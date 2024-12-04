@@ -98,4 +98,17 @@ const GetUsersReview = async (req, res) => {
     }
 }
 
-export { HealthCheck, UserRegister, UserLogin, GetUser, GetAllUser, GetUsersReview };
+const UpdateUser = async (req, res) => {
+    const _id = req.UserId;
+    try {
+        
+        await User.findByIdAndUpdate(_id, req.body, { new: true });
+        return res.status(200).send("User Updated");
+
+    } catch (error) {
+        console.log("error find in UpdateUser data in user controller :: " + error)
+        return res.status(400).send("Error :: " + error);
+    }
+}
+
+export { HealthCheck, UserRegister, UserLogin, GetUser, GetAllUser, GetUsersReview, UpdateUser };

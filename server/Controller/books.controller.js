@@ -54,4 +54,25 @@ const AllBooks = async (req, res) => {
     }
 }
 
-export { SubmitBooks, AllBooks };
+const DeleteBooks = async (req, res) => {
+
+    const _id = req.params.id;
+    const cloudId = req.params.cloudId;
+
+    try {
+        const response = await Books.findOne({ _id });
+
+        if (response){
+            await cloudinary.uploader.destroy(cloudId).then(result => console.log(result));
+            await User.findByIdAndDelete(_id);
+            return res.status(200).send("books deleted");
+        }
+
+    } catch (error) {
+        console.log("found error in DeleteBooks in controller :: " + error);
+        return res.status(400).send("errr found " + error);
+
+    }
+}
+
+export { SubmitBooks, AllBooks, DeleteBooks };

@@ -42,4 +42,22 @@ const AllBooksReview = async (req, res) => {
     }
 }
 
-export { SubmitReview, AllBooksReview };
+const DeleteReview = async (req, res) => {
+
+    const _id = req.params.reviewid;
+
+    try {
+
+        const response = await BookReview.findByIdAndDelete({ _id });
+
+        if (response) {
+            return res.status(200).send("Review deleted successfull");
+        }
+
+    } catch (error) {
+        console.log("Error found in DeleteReview reviewcontroller :: " + error);
+        return res.status(400).send("error found :: " + error);
+    }
+}
+
+export { SubmitReview, AllBooksReview, DeleteReview };
