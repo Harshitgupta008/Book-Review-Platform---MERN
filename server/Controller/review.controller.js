@@ -32,11 +32,9 @@ const AllBooksReview = async (req, res) => {
 
     try {
         const AllBooks = await BookReview.find({ booksId })
-        if (AllBooks.length > 0) { 
-            return res.status(200).send(AllBooks);
-        }else{
-            return res.status(201).send("Riview list are empty")
-        }
+
+        return res.status(200).send(AllBooks);
+
 
     } catch (error) {
         console.log("Error found in AllBooksReview reviewcontroller :: " + error);

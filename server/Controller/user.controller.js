@@ -89,11 +89,8 @@ const GetUsersReview = async (req, res) => {
         const userdata = await req.user;
         const AllBooks = await BookReview.find({ email: userdata.email })
 
-        if (AllBooks.length > 0) {
-            return res.status(200).send(AllBooks);
-        } else {
-            return res.status(201).send("Riview list are empty")
-        }
+        return res.status(200).send(AllBooks);
+
     } catch (error) {
         console.log("error find in GetUsersReview data in user controller :: " + error)
         return res.status(400).send("Error :: " + error);
