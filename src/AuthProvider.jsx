@@ -116,8 +116,11 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         UserAuth();
-        UserReview();
     }, [token]);
+
+    useEffect(() => {
+        UserReview();
+    }, [userReview]);
 
     useEffect(() => {
         if (userDetail) {
@@ -128,7 +131,7 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         BooksData();
-    }, [allbooksdata]);
+    }, []);
 
 
     return <AuthContext.Provider value={{ token, isLoggedin, userDetail, allUserData, userReview, allbooksdata, GenrateToken, RemoveToken }}>

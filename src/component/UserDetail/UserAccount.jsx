@@ -72,7 +72,7 @@ const UserAccount = () => {
                 </div>
             </aside>
 
-            <div className="p-4 sm:ml-64">
+            <div className="min-h-screen p-4 sm:ml-64">
                 <div className="p-4   rounded-lg dark:border-gray-700">
 
                     <Outlet />

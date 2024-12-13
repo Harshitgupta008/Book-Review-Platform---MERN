@@ -77,7 +77,7 @@ const AdimnAccount = () => {
                 </div>
             </aside>
 
-            <div className="p-4 sm:ml-64">
+            <div className="p-4 min-h-screen sm:ml-64">
                 <div className="p-4   rounded-lg dark:border-gray-700">
 
                     <Outlet />
